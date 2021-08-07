@@ -2,15 +2,15 @@ using Autofac;
 using CustomerManagementSystem.Api.Extensions;
 using CustomerManagementSystem.Domain;
 using CustomerManagementSystem.Multitenancy;
-using CustomerManagementSystem.Multitenancy.DependencyInjection;
-using CustomerManagementSystem.Multitenancy.Options;
 using CustomerManagementSystem.Multitenancy.TenantResolution;
+using CustomerManagementSystem.Services.CompanyA;
+using CustomerManagementSystem.Services.CompanyB;
+using CustomerManagementSystem.Services.CompanyC;
 using CustomerManagementSystem.Util.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace CustomerManagementSystem.Api
 {
@@ -26,8 +26,20 @@ namespace CustomerManagementSystem.Api
             HostContext = hostContext;
         }
 
-        public static void ConfigureMultiTenantServices(Tenant t, ContainerBuilder c)
+        public static void ConfigureMultiTenantServices(Tenant tenant, ContainerBuilder services)
         {
+            // Configures the tenant specific services
+            switch (tenant.Id) {
+                case TenantId.GuidCompanyA:
+                    services.AddCompanyAServices();
+                    break;
+                case TenantId.GuidCompanyB:
+                    services.AddCompanyBServices();
+                    break;
+                case TenantId.GuidCompanyC:
+                    services.AddCompanyCServices();
+                    break;
+            }
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -73,6 +85,7 @@ namespace CustomerManagementSystem.Api
             app.UseCors(CORS_ALL);
             app.UseMiddleware<ResponseHeaderMiddleware>();
             app.UseMiddleware<ErrorHandlerMiddleware>();
+
             app.UseMultiTenancy()
                .UseMultiTenantContainer();
 
