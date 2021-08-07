@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <PackageReference Include="Autofac" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerManagementSystem.Domain.CompanyA\CustomerManagementSystem.Domain.CompanyA.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Domain\CustomerManagementSystem.Domain.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyA\CustomerManagementSystem.Infrastructure.CompanyA.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services\CustomerManagementSystem.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,4 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerManagementSystem.Domain.CompanyB\CustomerManagementSystem.Domain.CompanyB.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Domain\CustomerManagementSystem.Domain.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyB\CustomerManagementSystem.Infrastructure.CompanyB.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services\CustomerManagementSystem.Services.csproj" />
+  </ItemGroup>
+
 </Project>

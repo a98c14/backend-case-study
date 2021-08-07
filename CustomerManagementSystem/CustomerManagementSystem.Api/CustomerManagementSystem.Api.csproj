@@ -44,8 +44,13 @@
     <ProjectReference Include="..\CustomerManagementSystem.Controllers.CompanyA\CustomerManagementSystem.Controllers.CompanyA.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Controllers.CompanyB\CustomerManagementSystem.Controllers.CompanyB.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Controllers.CompanyC\CustomerManagementSystem.Controllers.CompanyC.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyA\CustomerManagementSystem.Infrastructure.CompanyA.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyB\CustomerManagementSystem.Infrastructure.CompanyB.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyC\CustomerManagementSystem.Infrastructure.CompanyC.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Multitenancy\CustomerManagementSystem.Multitenancy.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services.CompanyA\CustomerManagementSystem.Services.CompanyA.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services.CompanyB\CustomerManagementSystem.Services.CompanyB.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services.CompanyC\CustomerManagementSystem.Services.CompanyC.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Services\CustomerManagementSystem.Services.csproj" />
   </ItemGroup>
 </Project>
