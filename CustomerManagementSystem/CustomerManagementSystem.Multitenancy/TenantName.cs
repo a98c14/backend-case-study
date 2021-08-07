@@ -2,9 +2,9 @@
 {
     public class TenantName
     {
-        public const string Default      = "Default";
-        public const string NameCompanyA = "Company A";
-        public const string NameCompanyB = "Company B";
-        public const string NameCompanyC = "Company C";
+        public const string Default      = "default";
+        public const string NameCompanyA = "company-a";
+        public const string NameCompanyB = "company-b";
+        public const string NameCompanyC = "company-c";
     }
 }

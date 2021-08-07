@@ -10,7 +10,7 @@ namespace CustomerManagementSystem.Infrastructure.CompanyC
 {
     public class DataContext : DbContext
     {
-        public DbSet<Customer> Accounts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         private readonly IConfiguration m_Configuration;
 
@@ -21,7 +21,10 @@ namespace CustomerManagementSystem.Infrastructure.CompanyC
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseOracle(m_Configuration.GetConnectionString("Development.CompanyA"));
+            options.UseInMemoryDatabase("CompanyC");
+
+            // NOTE(selim): If this was a real project we could have used company database
+            // options.UseOracle(m_Configuration.GetConnectionString("Development.CompanyA"));
         }
 
         public override int SaveChanges()

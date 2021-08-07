@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\CustomerManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Multitenancy\CustomerManagementSystem.Multitenancy.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Services.CompanyA\CustomerManagementSystem.Services.CompanyA.csproj" />
   </ItemGroup>
 

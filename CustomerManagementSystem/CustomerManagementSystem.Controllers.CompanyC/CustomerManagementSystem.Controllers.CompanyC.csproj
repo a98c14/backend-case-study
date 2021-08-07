@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\CustomerManagementSystem.Common.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Domain.CompanyC\CustomerManagementSystem.Domain.CompanyC.csproj" />
+    <ProjectReference Include="..\CustomerManagementSystem.Multitenancy\CustomerManagementSystem.Multitenancy.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Services.CompanyC\CustomerManagementSystem.Services.CompanyC.csproj" />
   </ItemGroup>
 

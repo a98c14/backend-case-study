@@ -11,7 +11,7 @@ namespace CustomerManagementSystem.Infrastructure.CompanyA
 {
     public class DataContext : DbContext
     {
-        public DbSet<Customer> Accounts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         private readonly IConfiguration m_Configuration;
         private readonly IHostEnvironment m_Env;
@@ -24,7 +24,10 @@ namespace CustomerManagementSystem.Infrastructure.CompanyA
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(m_Configuration.GetConnectionString(m_Env.IsDevelopment() ? "Development.CompanyA" : "Production.CompanyA"));
+            options.UseInMemoryDatabase("CompanyA");
+
+            // NOTE(selim): If this was a real project we could have used company database
+            // options.UseSqlServer(m_Configuration.GetConnectionString(m_Env.IsDevelopment() ? "Development.CompanyA" : "Production.CompanyA"));
         }
 
         public override int SaveChanges()

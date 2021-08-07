@@ -50,11 +50,10 @@ namespace CustomerManagementSystem.Api
             services.AddControllers();
             services.AddSwagger();
             services.AddHttpContextAccessor();
-            services.AddDistributedCache(HostContext, Configuration);
 
             var assemblyCompanyA = typeof(CustomerManagementSystem.Controllers.CompanyA.CustomersController).Assembly;
             var assemblyCompanyB = typeof(CustomerManagementSystem.Controllers.CompanyB.CustomersController).Assembly;
-            var assemblyCompanyC = typeof(CustomerManagementSystem.Controllers.CompanyC.CustomersController).Assembly;
+            var assemblyCompanyC = typeof(CustomerManagementSystem.Controllers.CompanyC.CustomersController).Assembly;            
 
             services.AddControllers()
                 .AddApplicationPart(assemblyCompanyA)
@@ -63,9 +62,8 @@ namespace CustomerManagementSystem.Api
                 .AddControllersAsServices();
 
             services.AddMultiTenancy()
-                .WithResolutionStrategy<HeaderResolutionStrategy>()
+                .WithResolutionStrategy<RouteResolutionStrategy>()
                 .WithStore<InMemoryTenantStore>();
-
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
