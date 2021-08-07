@@ -1,34 +1,75 @@
-﻿using CustomerManagementSystem.Services.CompanyA.Interfaces;
+﻿using CustomerManagementSystem.Domain.CompanyA;
+using CustomerManagementSystem.Infrastructure.CompanyA;
+using CustomerManagementSystem.Services.CompanyA.Interfaces;
 using CustomerManagementSystem.Services.CompanyA.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CustomerManagementSystem.Services.CompanyA
 {
     public class CustomerService : ICustomerService
     {
-        public void Create(CustomerModel model)
+        private readonly DataContext m_Context;
+        private readonly IScoringService m_ScoringService;
+
+        public CustomerService(DataContext context, IScoringService scoringService)
         {
-            throw new System.NotImplementedException();
+            m_Context = context;
+            m_ScoringService = scoringService;
         }
 
-        public void Delete(int id)
+        public async Task<CustomerModel> Create(CustomerModel model)
         {
-            throw new System.NotImplementedException();
+            var added = new Customer
+            {
+                BirthDate = model.BirthDate,
+                Name = model.Name,
+                Surname = model.Surname,
+                TCKN = model.TCKN,
+                Score = m_ScoringService.CalculateScore()
+            };
+            m_Context.Customers.Add(added);
+            await m_Context.SaveChangesAsync();
+            return new CustomerModel(added);
         }
 
-        public List<CustomerModel> GetAll()
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var existing = await m_Context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            if(existing == null)
+                throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
+
+            m_Context.Customers.Remove(existing);
+            await m_Context.SaveChangesAsync();
         }
 
-        public CustomerModel GetById(int id)
+        public async Task<List<CustomerModel>> GetAll()
         {
-            throw new System.NotImplementedException();
+            return await m_Context.Customers.AsNoTracking().Select(x => new CustomerModel(x)).ToListAsync();
         }
 
-        public void Update(int id, CustomerModel model)
+        public async Task<CustomerModel> GetById(int id)
         {
-            throw new System.NotImplementedException();
+            var existing = await m_Context.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            if (existing == null)
+                throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
+
+            return new CustomerModel(existing);
+        }
+
+        public async Task Update(int id, CustomerModel model)
+        {
+            var existing = await m_Context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            if (existing == null)
+                throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
+
+            existing.Name = model.Name;
+            existing.Surname = model.Surname;
+            existing.TCKN = model.TCKN;
+            existing.BirthDate = model.BirthDate;
+            await m_Context.SaveChangesAsync();
         }
     }
 }
