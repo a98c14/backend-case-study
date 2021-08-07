@@ -6,5 +6,6 @@
         public string    Surname   { get; set; }
         public string    Email     { get; set; }
         public Education Education { get; set; }
+        public double    Score     { get; set;}
     }
 }

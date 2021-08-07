@@ -7,6 +7,7 @@ namespace CustomerManagementSystem.Domain.CompanyA
         public string   TCKN      { get; set; }
         public string   Name      { get; set; }
         public string   Surname   { get; set; }
+        public double   Score     { get; set;}
         public DateTime BirthDate { get; set; }
     }
 }
