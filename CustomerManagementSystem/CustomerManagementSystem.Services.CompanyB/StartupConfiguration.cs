@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using CustomerManagementSystem.Infrastructure.CompanyB;
 using CustomerManagementSystem.Services.CompanyB.Interfaces;
 
 namespace CustomerManagementSystem.Services.CompanyB
@@ -7,8 +8,9 @@ namespace CustomerManagementSystem.Services.CompanyB
     {
         public static void AddCompanyBServices(this ContainerBuilder c)
         {
-            c.RegisterInstance(new ScoringService()).As<IScoringService>();
-            c.RegisterInstance(new CustomerService()).As<ICustomerService>();
+            c.RegisterType<DataContext>();
+            c.RegisterType<ScoringService>().As<IScoringService>();
+            c.RegisterType<CustomerService>().As<ICustomerService>();
         }
     }
 }
