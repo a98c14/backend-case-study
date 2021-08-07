@@ -1,8 +1,8 @@
 ﻿using CustomerManagementSystem.Domain.CompanyC;
 
-namespace CustomerManagementSystem.Controllers.CompanyC.Models
+namespace CustomerManagementSystem.Services.CompanyC.Models
 {
-    public class CustomerRequestModel
+    public class CustomerModel
     {
         public string    Name      { get; set; }
         public string    Surname   { get; set; }
