@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CustomerManagementSystem.Services.CompanyC
+﻿namespace CustomerManagementSystem.Services.CompanyC
 {
-    class ScoringService
+    public class ScoringService : IScoringService
     {
+        // Calculates the score using company scoring algortihm
+        public double CalculateScore()
+        {
+            return 0.0;
+        }
     }
 }
