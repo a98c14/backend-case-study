@@ -1,4 +1,5 @@
-﻿using CustomerManagementSystem.Services.CompanyC.Interfaces;
+﻿using CustomerManagementSystem.Multitenancy;
+using CustomerManagementSystem.Services.CompanyC.Interfaces;
 using CustomerManagementSystem.Services.CompanyC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace CustomerManagementSystem.Controllers.CompanyC
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route(TenantName.NameCompanyC + "/[controller]")]
     public class CustomersController : ControllerBase
     {
         private readonly ILogger<CustomersController> m_Logger;
