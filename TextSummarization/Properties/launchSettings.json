@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TextSummarization": {
+      "commandName": "Project",
+      "commandLineArgs": "\"./sample.txt\""
+    }
+  }
+}
