@@ -1,7 +1,9 @@
-﻿using CustomerManagementSystem.Domain.CompanyA;
+﻿using CustomerManagementSystem.Common.Exceptions;
+using CustomerManagementSystem.Domain.CompanyA;
 using CustomerManagementSystem.Infrastructure.CompanyA;
 using CustomerManagementSystem.Services.CompanyA.Interfaces;
 using CustomerManagementSystem.Services.CompanyA.Models;
+using CustomerManagementSystem.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,21 @@ namespace CustomerManagementSystem.Services.CompanyA
     {
         private readonly DataContext m_Context;
         private readonly IScoringService m_ScoringService;
+        private readonly IMernisValidationService m_ValidationService;
 
-        public CustomerService(DataContext context, IScoringService scoringService)
+        public CustomerService(DataContext context, IScoringService scoringService, IMernisValidationService validationService)
         {
             m_Context = context;
             m_ScoringService = scoringService;
+            m_ValidationService = validationService;
         }
 
         public async Task<CustomerModel> Create(CustomerModel model)
         {
+            var isValid = m_ValidationService.ValidateCustomer(model.TCKN, model.Name, model.Surname, model.BirthDate.Year);
+            if(!isValid)
+                throw new ApiException("Invalid customer info");
+
             var added = new Customer
             {
                 BirthDate = model.BirthDate,
