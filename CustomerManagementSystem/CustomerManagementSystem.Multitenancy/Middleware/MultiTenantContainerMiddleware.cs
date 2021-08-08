@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CustomerManagementSystem.Multitenancy.Middleware
 {
+    /// <summary>
+    /// // Configures service provider to use the tenant provider instead of the default provider.
+    /// </summary>
     internal class MultiTenantContainerMiddleware<T> where T : Tenant
     {
         private readonly RequestDelegate next;
@@ -18,8 +21,6 @@ namespace CustomerManagementSystem.Multitenancy.Middleware
 
         public async Task Invoke(HttpContext context, Func<MultiTenantContainer<T>> multiTenantContainerAccessor)
         {
-            //Set to current tenant container.
-            //Begin new scope for request as ASP.NET Core standard scope is per-request
             context.RequestServices =
                 new AutofacServiceProvider(multiTenantContainerAccessor()
                         .GetCurrentTenantScope().BeginLifetimeScope());

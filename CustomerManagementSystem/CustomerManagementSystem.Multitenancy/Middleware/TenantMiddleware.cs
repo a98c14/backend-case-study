@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace CustomerManagementSystem.Multitenancy.Middleware
 {
+    /// <summary>
+    /// Writes the current tenant info to HttpContext for ease of use (prevents injecting TenantAccessService everywhere)
+    /// </summary>
     internal class TenantMiddleware<T> where T : Tenant
     {
         private readonly RequestDelegate next;
