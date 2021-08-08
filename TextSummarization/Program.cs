@@ -9,10 +9,7 @@ namespace TextSummarization
     public class Program
     {
         private const int PrintCellWidth = 7;
-
-        // Summary sentence length
-        private const int SummarySentenceCount = 3;
-
+        
         public static string RemoveSpecialCharacters(string str)
         {
             return Regex.Replace(str, "[^üçşğöıa-zÜÇŞĞÖİA-Z0-9 ]+", " ", RegexOptions.Compiled);
@@ -20,14 +17,7 @@ namespace TextSummarization
 
         static void Main(string[] args)
         {
-            if(args.Length == 0)
-            {
-                Console.WriteLine("No input file is specified!");
-                return;
-            }
-
-            var path = args[0];
-            var text = File.ReadAllText(path);
+            ParseArgs(args, out var text, out var summaryLength);
 
             // Get sentences from input
             var sentences = Regex.Split(text, @"(?<=[\.!\?])\s+");
@@ -50,11 +40,45 @@ namespace TextSummarization
             // Order by index again to get a sentence structure similar to inital text
             var result = string.Join(" ", scoreSentences
                 .OrderBy(x => x.Score)
-                .Take(SummarySentenceCount)
+                .Take(summaryLength)
                 .OrderBy(x => x.Index)      
                 .Select(x => x.Sentence));
 
             Console.WriteLine(result);
+        }
+
+        public static bool ParseArgs(string[] args, out string text, out int length)
+        {
+            text = "";
+            length = 0;
+
+            if (args.Length == 0)
+            {
+                Console.WriteLine("No input file is specified!");
+                return false;
+            }
+
+            var path = args[0];
+            try
+            {
+                text = File.ReadAllText(path);
+            }
+            catch
+            {
+                Console.WriteLine("Could not find file in specified path!");
+                return false;
+            }
+
+            var summarySentenceCount = 3;
+            if (args.Length > 1)
+            {
+                if (int.TryParse(args[1], out var summaryLength))
+                    summarySentenceCount = summaryLength;
+                else
+                    Console.WriteLine("Could not parse summary length! Summary will be default length of 3");
+            }
+            length = summarySentenceCount;
+            return true;
         }
 
         /// <summary>
