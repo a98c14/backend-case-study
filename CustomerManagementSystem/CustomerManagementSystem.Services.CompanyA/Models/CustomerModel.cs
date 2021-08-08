@@ -1,14 +1,23 @@
 ﻿using CustomerManagementSystem.Domain.CompanyA;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CustomerManagementSystem.Services.CompanyA.Models
 {
     public class CustomerModel
     {
-        public int      Id        { get; set; }
-        public long     TCKN      { get; set; }
-        public string   Name      { get; set; }
-        public string   Surname   { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public long TCKN { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
         public DateTime BirthDate { get; set; }
 
         public CustomerModel()

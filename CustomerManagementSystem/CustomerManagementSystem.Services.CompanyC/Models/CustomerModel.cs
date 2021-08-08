@@ -1,12 +1,22 @@
 ﻿using CustomerManagementSystem.Domain.CompanyC;
+using System.ComponentModel.DataAnnotations;
 
 namespace CustomerManagementSystem.Services.CompanyC.Models
 {
     public class CustomerModel
     {
-        public string    Name      { get; set; }
-        public string    Surname   { get; set; }
-        public string    Email     { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [EmailAddress, Required]
+        public string Email { get; set; }
+
+        [Required]
         public Education Education { get; set; }
 
         public CustomerModel()
@@ -16,6 +26,7 @@ namespace CustomerManagementSystem.Services.CompanyC.Models
 
         public CustomerModel(Customer c)
         {
+            Id = c.Id;
             Name = c.Name;
             Surname = c.Surname;
             Email = c.Email;

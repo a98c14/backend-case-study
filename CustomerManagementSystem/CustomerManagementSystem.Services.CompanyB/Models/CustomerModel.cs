@@ -1,12 +1,25 @@
 ﻿using CustomerManagementSystem.Domain.CompanyB;
+using System.ComponentModel.DataAnnotations;
 
 namespace CustomerManagementSystem.Services.CompanyB.Models
 {
     public class CustomerModel
     {
-        public string    Name      { get; set; }
-        public string    Surname   { get; set; }
-        public string    GSM       { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+                      
+        [Required]    
+        public string Name { get; set; }
+                      
+        [Required]    
+        public string Surname { get; set; }
+                      
+        [Required]    
+        public string GSM { get; set; }
+
+        [Required]
         public Education Education { get; set; }
 
         public CustomerModel()
@@ -16,6 +29,7 @@ namespace CustomerManagementSystem.Services.CompanyB.Models
 
         public CustomerModel(Customer c)
         {
+            Id = c.Id;
             Name = c.Name;
             Surname = c.Surname;
             GSM = c.GSM;
