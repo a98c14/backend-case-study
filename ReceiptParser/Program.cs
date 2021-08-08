@@ -57,18 +57,38 @@ namespace ReceiptParser
 
         static void Main(string[] args)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "response.json");
-            var json = File.ReadAllText(path);
+            if(args.Length == 0)
+            {
+                Console.WriteLine("No input path is specified!");
+                return;
+            }
+            var inputPath = args[0];
+            var outputPath = args.Length > 1 ? args[1] : "./output.txt";
+            var json = "";
+
+            try
+            {
+                json = File.ReadAllText(inputPath);
+            }
+            catch
+            {
+                Console.WriteLine($"No file found in specified path! Path: {inputPath}");
+                return;
+            }
+
             var sections = JsonConvert.DeserializeObject<OCRSection[]>(json);
             var ordered = sections.Skip(1).OrderBy(x => x.BL.Y).ToList();
             var lineLength = CalculateLineLength(ordered);
             var lines = GenerateLines(ordered, lineLength);
 
+            using var output = File.CreateText(outputPath);
             Console.WriteLine($"{"Line", 8} | {"Description"}");
+            output.WriteLine($"{"Line",8} | {"Description"}");
             foreach (var line in lines)
             {
                 line.SortSectionsByX();
                 Console.WriteLine(line);
+                output.WriteLine(line);
             }
         }
     }
