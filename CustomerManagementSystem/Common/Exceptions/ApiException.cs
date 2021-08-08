@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace CustomerManagementSystem.Api.Exceptions
+namespace CustomerManagementSystem.Common.Exceptions
 {
     public class ApiException : Exception
     {

@@ -1,4 +1,4 @@
-﻿using CustomerManagementSystem.Api.Exceptions;
+﻿using CustomerManagementSystem.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
