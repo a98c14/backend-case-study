@@ -3,6 +3,7 @@ using CustomerManagementSystem.Services.CompanyB.Interfaces;
 using CustomerManagementSystem.Services.CompanyB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace CustomerManagementSystem.Controllers.CompanyB
 {
@@ -20,38 +21,58 @@ namespace CustomerManagementSystem.Controllers.CompanyB
         }
 
         [HttpGet("")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            m_CustomerService.GetAll();
-            return Ok();
+            var customers = await m_CustomerService.GetAll();
+            return Ok(customers);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            m_CustomerService.GetById(id);
-            return Ok();
+            var customer = await m_CustomerService.GetById(id);
+            return Ok(customer);
         }
 
         [HttpPost("")]
-        public IActionResult Create([FromBody] CustomerModel model)
+        public async Task<IActionResult> Create([FromBody] CustomerModel model)
         {
-            m_CustomerService.Create(model);
-            return Ok();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var customer = await m_CustomerService.Create(model);
+            return Ok(customer);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] CustomerModel model)
+        public async Task<IActionResult> Update(int id, [FromBody] CustomerModel model)
         {
-            m_CustomerService.Update(id, model);
-            return Ok();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            await m_CustomerService.Update(id, model);
+            return Ok("Customer succesfully updated!");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            m_CustomerService.Delete(id);
-            return Ok();
+            await m_CustomerService.Delete(id);
+            return Ok("Customer succesfully deleted");
+        }
+
+
+        [HttpPost("Validate")]
+        public async Task<IActionResult> ValidateGSM([FromBody] GSMValidationModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await m_CustomerService.ValidateGSM(model.Token, model.GSM); ;
+            if (!result)
+                return BadRequest("Invalid validation token");
+
+            return Ok("Email succesfully validated");
         }
     }
 }
