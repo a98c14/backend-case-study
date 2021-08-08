@@ -37,15 +37,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{55B1CBBF-5AF4-453E-9B15-D8024630A81D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Services", "CustomerManagementSystem.Services\CustomerManagementSystem.Services.csproj", "{9B2B3224-AA65-47C2-BFAC-6D7266449065}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Services", "CustomerManagementSystem.Services\CustomerManagementSystem.Services.csproj", "{9B2B3224-AA65-47C2-BFAC-6D7266449065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Services.CompanyA", "CustomerManagementSystem.Services.CompanyA\CustomerManagementSystem.Services.CompanyA.csproj", "{9384EF27-FB95-4018-8FDD-755D03262F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Services.CompanyA", "CustomerManagementSystem.Services.CompanyA\CustomerManagementSystem.Services.CompanyA.csproj", "{9384EF27-FB95-4018-8FDD-755D03262F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Services.CompanyB", "CustomerManagementSystem.Services.CompanyB\CustomerManagementSystem.Services.CompanyB.csproj", "{49CBD461-AAB4-4375-98C3-97DEE3EC8C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Services.CompanyB", "CustomerManagementSystem.Services.CompanyB\CustomerManagementSystem.Services.CompanyB.csproj", "{49CBD461-AAB4-4375-98C3-97DEE3EC8C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Services.CompanyC", "CustomerManagementSystem.Services.CompanyC\CustomerManagementSystem.Services.CompanyC.csproj", "{88CE3D18-93F1-4F5B-B8F7-919C856A580F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Services.CompanyC", "CustomerManagementSystem.Services.CompanyC\CustomerManagementSystem.Services.CompanyC.csproj", "{88CE3D18-93F1-4F5B-B8F7-919C856A580F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Multitenancy", "CustomerManagementSystem.Multitenancy\CustomerManagementSystem.Multitenancy.csproj", "{46D2591F-6ADA-4048-8872-E6179A73277F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementSystem.Multitenancy", "CustomerManagementSystem.Multitenancy\CustomerManagementSystem.Multitenancy.csproj", "{46D2591F-6ADA-4048-8872-E6179A73277F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagementSystem.Services.Tests", "CustomerManagementSystem.Services.Tests\CustomerManagementSystem.Services.Tests.csproj", "{E028E657-47FF-4F56-8797-3EEB4BD7A76C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,10 @@ Global
 		{46D2591F-6ADA-4048-8872-E6179A73277F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D2591F-6ADA-4048-8872-E6179A73277F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D2591F-6ADA-4048-8872-E6179A73277F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E028E657-47FF-4F56-8797-3EEB4BD7A76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E028E657-47FF-4F56-8797-3EEB4BD7A76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E028E657-47FF-4F56-8797-3EEB4BD7A76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E028E657-47FF-4F56-8797-3EEB4BD7A76C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +150,7 @@ Global
 		{9384EF27-FB95-4018-8FDD-755D03262F61} = {55B1CBBF-5AF4-453E-9B15-D8024630A81D}
 		{49CBD461-AAB4-4375-98C3-97DEE3EC8C88} = {55B1CBBF-5AF4-453E-9B15-D8024630A81D}
 		{88CE3D18-93F1-4F5B-B8F7-919C856A580F} = {55B1CBBF-5AF4-453E-9B15-D8024630A81D}
+		{E028E657-47FF-4F56-8797-3EEB4BD7A76C} = {55B1CBBF-5AF4-453E-9B15-D8024630A81D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0C3A8E0-12E3-4722-BCF5-63DCCAD1C9F6}

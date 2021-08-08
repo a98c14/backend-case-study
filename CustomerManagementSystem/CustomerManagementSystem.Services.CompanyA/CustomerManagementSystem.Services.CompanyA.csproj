@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\CustomerManagementSystem.Common.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Domain.CompanyA\CustomerManagementSystem.Domain.CompanyA.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Domain\CustomerManagementSystem.Domain.csproj" />
     <ProjectReference Include="..\CustomerManagementSystem.Infrastructure.CompanyA\CustomerManagementSystem.Infrastructure.CompanyA.csproj" />
