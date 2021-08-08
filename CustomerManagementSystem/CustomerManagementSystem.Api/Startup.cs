@@ -3,6 +3,7 @@ using CustomerManagementSystem.Api.Extensions;
 using CustomerManagementSystem.Domain;
 using CustomerManagementSystem.Multitenancy;
 using CustomerManagementSystem.Multitenancy.TenantResolution;
+using CustomerManagementSystem.Services;
 using CustomerManagementSystem.Services.CompanyA;
 using CustomerManagementSystem.Services.CompanyB;
 using CustomerManagementSystem.Services.CompanyC;
@@ -17,13 +18,11 @@ namespace CustomerManagementSystem.Api
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public IHostingEnvironment HostContext;
         private const string CORS_ALL = "All";
 
-        public Startup(IConfiguration config, IHostingEnvironment hostContext)
+        public Startup(IConfiguration config)
         {
             Configuration = config;
-            HostContext = hostContext;
         }
 
         public static void ConfigureMultiTenantServices(Tenant tenant, ContainerBuilder services)
@@ -50,6 +49,7 @@ namespace CustomerManagementSystem.Api
             services.AddControllers();
             services.AddSwagger();
             services.AddHttpContextAccessor();
+            services.AddDefaultServices();
 
             var assemblyCompanyA = typeof(CustomerManagementSystem.Controllers.CompanyA.CustomersController).Assembly;
             var assemblyCompanyB = typeof(CustomerManagementSystem.Controllers.CompanyB.CustomersController).Assembly;
@@ -66,9 +66,9 @@ namespace CustomerManagementSystem.Api
                 .WithStore<InMemoryTenantStore>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName.Equals("Development"))
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
