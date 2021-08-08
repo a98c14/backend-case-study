@@ -1,10 +1,8 @@
 ﻿namespace CustomerManagementSystem.Services.Interfaces
 {
-    public class IOneTimePinService
+    public interface IOneTimePinService
     {
-        public void ValidatePin()
-        {
-
-        }
+        public string GenerateToken();
+        public void SendOtpMessage(string gsmNumber, string token);
     }
 }

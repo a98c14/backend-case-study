@@ -2,7 +2,7 @@
 {
     public interface IEmailValidationService
     {
-        public long GenerateToken();
+        public string GenerateToken();
         public void SendOTPMail(string mail, string token);
     }
 }

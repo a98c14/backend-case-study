@@ -6,10 +6,11 @@ namespace CustomerManagementSystem.Services.CompanyB.Interfaces
 {
     public interface ICustomerService
     {
-        public Task<List<CustomerModel>> GetAll();
-        public Task<CustomerModel> GetById(int id);
-        public Task<CustomerModel> Create(CustomerModel model);
-        public Task Update(int id, CustomerModel model);
-        public Task Delete(int id);
+        Task<List<CustomerModel>> GetAll();
+        Task<CustomerModel> GetById(int id);
+        Task<CustomerModel> Create(CustomerModel model);
+        Task Update(int id, CustomerModel model);
+        Task Delete(int id);
+        Task<bool> ValidateGSM(string token, string gsm);
     }
 }

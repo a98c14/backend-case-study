@@ -4,10 +4,10 @@ namespace CustomerManagementSystem.Services
 {
     public class EmailValidationService : IEmailValidationService
     {
-        public long GenerateToken()
+        public string GenerateToken()
         {
             // TODO(selim): Generate a token 
-            return 0;
+            return "token";
         }
 
         public void SendOTPMail(string mail, string token)
