@@ -5,6 +5,7 @@ using CustomerManagementSystem.Services.CompanyA.Interfaces;
 using CustomerManagementSystem.Services.CompanyA.Models;
 using CustomerManagementSystem.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,22 +46,31 @@ namespace CustomerManagementSystem.Services.CompanyA
 
         public async Task Delete(int id)
         {
-            var existing = await m_Context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await m_Context.Customers
+                .Where(x => !x.IsDeleted)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             if(existing == null)
                 throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
 
-            m_Context.Customers.Remove(existing);
+            existing.IsDeleted = true;
+            existing.DeletedAt = DateTime.Now;
             await m_Context.SaveChangesAsync();
         }
 
         public async Task<List<CustomerModel>> GetAll()
         {
-            return await m_Context.Customers.AsNoTracking().Select(x => new CustomerModel(x)).ToListAsync();
+            return await m_Context.Customers.AsNoTracking()
+                .Where(x => !x.IsDeleted)
+                .Select(x => new CustomerModel(x)).ToListAsync();
         }
 
         public async Task<CustomerModel> GetById(int id)
         {
-            var existing = await m_Context.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await m_Context.Customers.AsNoTracking()
+                .Where(x => !x.IsDeleted)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             if (existing == null)
                 throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
 
@@ -69,7 +79,10 @@ namespace CustomerManagementSystem.Services.CompanyA
 
         public async Task Update(int id, CustomerModel model)
         {
-            var existing = await m_Context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await m_Context.Customers
+                .Where(x => !x.IsDeleted)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             if (existing == null)
                 throw new KeyNotFoundException($"Customer with id: {id} does not exist!");
 
