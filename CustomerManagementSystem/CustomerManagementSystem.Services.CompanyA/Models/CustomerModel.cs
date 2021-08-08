@@ -18,7 +18,7 @@ namespace CustomerManagementSystem.Services.CompanyA.Models
         public string Surname { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
         public CustomerModel()
         {
@@ -31,7 +31,7 @@ namespace CustomerManagementSystem.Services.CompanyA.Models
             TCKN = c.TCKN;
             Name = c.Name;
             Surname = c.Surname;
-            BirthDate = c.BirthDate;
+            Birthdate = c.Birthdate;
         }
     }
 }

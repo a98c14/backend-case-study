@@ -27,13 +27,13 @@ namespace CustomerManagementSystem.Services.CompanyA
 
         public async Task<CustomerModel> Create(CustomerModel model)
         {
-            var isValid = m_ValidationService.ValidateCustomer(model.TCKN, model.Name, model.Surname, model.BirthDate.Year);
+            var isValid = m_ValidationService.ValidateCustomer(model.TCKN, model.Name, model.Surname, model.Birthdate.Value.Year);
             if(!isValid)
-                throw new ApiException("Invalid customer info");
+                throw new ApiException("Given customer info is not valid.");
 
             var added = new Customer
             {
-                BirthDate = model.BirthDate,
+                Birthdate = model.Birthdate.Value,
                 Name = model.Name,
                 Surname = model.Surname,
                 TCKN = model.TCKN,
@@ -89,7 +89,7 @@ namespace CustomerManagementSystem.Services.CompanyA
             existing.Name = model.Name;
             existing.Surname = model.Surname;
             existing.TCKN = model.TCKN;
-            existing.BirthDate = model.BirthDate;
+            existing.Birthdate = model.Birthdate.Value;
             await m_Context.SaveChangesAsync();
         }
     }
